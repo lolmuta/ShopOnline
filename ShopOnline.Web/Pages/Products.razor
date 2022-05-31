@@ -1,0 +1,31 @@
+﻿@page "/"
+@inherits ProductsBase
+
+@*<DisplaySpinner></DisplaySpinner>*@
+@if (Products == null)
+{
+    <DisplaySpinner />
+}
+else
+{
+    <h3 class="mb-5">Products</h3>
+    if (Products.Any())
+    {
+        var groupByCategory = GetGorupProductsByCategory();
+
+        @foreach(var prodGroup in groupByCategory)
+        {
+            <h4>@GetCategoryName(prodGroup.Key)</h4>
+            <div class="row mt-3">
+                <DisplayProducts Products="@prodGroup.Take(4)"></DisplayProducts>
+            </div>
+            <hr class="mb-3" />
+        }
+
+    }
+
+}
+
+@code {
+
+}

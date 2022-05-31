@@ -1,0 +1,37 @@
+﻿@page "/asyncbuttons"
+
+<div class="container m-2 px-3 p-t bg-light">
+    <div class="row pt-2">
+        <div class="col-12">
+            <h3>Event Buttons</h3>
+        </div>
+    </div>
+    <div class="row pt-2">
+        <div class="col-6">
+            @value1
+        </div>
+        <div class="col-6">
+            <button class="btn btn-warning" @onclick="this.OnClick">Click</button>
+        </div>
+    </div>
+    <div class="row pt-2">
+        <div class="col-6">
+            @value1
+        </div>
+        <div class="col-6">
+            <button class="btn btn-warning" @onclick="(e) => this.OnClick(e)">Click</button>
+        </div>
+    </div>
+</div>
+@code {
+    private string value1 = "notset";
+
+    private async void OnClick(MouseEventArgs e)
+    {
+        value1 = "Onclick started";
+        await Task.Delay(2000);
+        // run some synchronous code
+        value1 = "Onclick complete";
+        StateHasChanged();
+    }
+}

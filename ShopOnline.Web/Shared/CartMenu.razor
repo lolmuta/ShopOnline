@@ -1,0 +1,22 @@
+﻿@implements IDisposable
+@inject IShoppingCartService shoppingCartService
+<a href="" class="btn btn-info">
+    <i class="oi oi-cart"></i>
+    <span class="badge bg-dark">@shoppingCartItemCount</span>
+</a>
+@code {
+    private int shoppingCartItemCount = 0;
+    protected override void OnInitialized()
+    {
+        shoppingCartService.OnShoppingCarteChanged += ShoppingCartChanged;
+    }
+    protected void ShoppingCartChanged(int qty)
+    {
+        shoppingCartItemCount = qty;
+        StateHasChanged();
+    }
+    void IDisposable.Dispose()
+    {
+        shoppingCartService.OnShoppingCarteChanged -= ShoppingCartChanged;
+    }
+}

@@ -1,0 +1,15 @@
+﻿@page "/testasync"
+<div>
+    <h3>@_message</h3>
+</div>
+@code {    
+    [Parameter]
+    public string _message{ get; set; } = "Starting";
+
+    protected async override Task OnInitializedAsync()
+    {
+       // _message = "Sync Code running";
+        await Task.Delay(2000);
+        _message = "Async Code completed";
+    }
+}

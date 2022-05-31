@@ -1,0 +1,63 @@
+﻿@page "/ShoppingCart"
+@inherits ShoppingCartBase
+
+@if (CartItemDtos == null)
+{
+    <DisplaySpinner />
+}
+else if (ErrorMessage != null)
+{
+    <DisplayError ErrorMessage="@ErrorMessage"></DisplayError>
+}
+else
+{
+    if (!CartItemDtos.Any())
+    {
+        <div>購物車內沒有東西啦!!</div>
+    }
+    else
+    {
+        <div class="container">
+            <h3 class="md-5">Shopping Cart</h3>
+            <div class="row">
+                <div class="col-md-9">  
+                    @foreach (CartItemDto item in CartItemDtos)
+                    {       
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="@item.ProductImageURL" class="img-thumbnail" width="300">
+                            </div>
+                            <div class="col-md-7">
+                                <h3>@item.ProductName</h3>
+                                <div>id:@item.ProductId</div>
+                                <div>@item.ProductDescription</div>
+                                <div>@item.TotoalPrice</div>
+                                <div>
+                                    <input @oninput="()=>UpdateQty_Input(item.Id)"  @bind="@item.Qty" />
+                                    <button data-itemId="@item.Id" class="btn btn-group update-qty" @onclick="()=> UpdateQty_Click(item.Id, item.Qty)">
+                                        Update Qty
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-danger"
+                                        @onclick = 
+                                        "() => DeleteCartItem_Click(item.Id)"
+                                        >
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="col-md-3">
+                    <div>summary</div>
+                    <div>@TotalPrice</div>
+                    <div>@TotalQuantity</div>
+                </div>
+            </div>
+        </div>        
+    }
+
+}
+
