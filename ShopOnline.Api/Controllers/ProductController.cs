@@ -78,5 +78,22 @@ namespace ShopOnline.Api.Controllers
         //            "Error retrive data from database");
         //    };
         //}
+        [HttpGet]
+        [Route(nameof(GetCategories))]
+        public async Task<ActionResult<IEnumerable<ProductCategoryDto>>> GetCategories()
+        {
+            try
+            {
+                var productCategories = await productRepository.GetCategories();
+                var productCategoryDtos = productCategories.ConverToDto();
+                return Ok(productCategoryDtos);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrive data from database");
+            }
+
+        }
     }
 }

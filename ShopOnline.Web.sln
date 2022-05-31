@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopOnline.Models", "ShopOn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorTest", "BlazorTest\BlazorTest.csproj", "{C8B98009-7CA1-4356-B80A-AF9D7FA90807}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsBlazor", "WinFormsBlazor\WinFormsBlazor.csproj", "{AF28F673-D4C7-4E71-9413-2BC3D5D66973}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormsBlazor", "WinFormsBlazor\WinFormsBlazor.csproj", "{AF28F673-D4C7-4E71-9413-2BC3D5D66973}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

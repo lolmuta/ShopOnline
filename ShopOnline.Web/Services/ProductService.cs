@@ -13,6 +13,29 @@ namespace ShopOnline.Web.Services
             this.httpClient = httpClient;
         }
 
+        public async Task<IEnumerable<ProductCategoryDto>> GetCategories()
+        {
+            try
+            {
+                var response = await this.httpClient.GetAsync($"api/Product/GetCategories");
+                if (!response.IsSuccessStatusCode)
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception(message);
+                }
+                if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                {
+                    return Enumerable.Empty<ProductCategoryDto>();
+                }
+                return await response.Content.ReadFromJsonAsync<IEnumerable<ProductCategoryDto>>();
+            }
+            catch (Exception)
+            {
+                //todo log
+                throw;
+            }
+        }
+
         public async Task<ProductDto> GetItem(int id)
         {
             try

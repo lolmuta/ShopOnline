@@ -1,0 +1,20 @@
+﻿@inherits ProductCategoriesNavMenuBase
+
+@if (ProductCategoryDtos == null && string.IsNullOrWhiteSpace(ErrorMessage))
+{
+    <DisplaySpinner />
+}
+else if (!string.IsNullOrWhiteSpace(ErrorMessage))
+{
+    <DisplayError ErrorMessage="@ErrorMessage"></DisplayError>
+}else{
+    @foreach (var item in ProductCategoryDtos)
+    {
+        var link = "/ProductByCategory/" + item.Id;
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="@link">
+                <span class="@item.IconCSS"></span>&nbsp;@item.Name
+            </NavLink>
+        </div>
+    }
+}

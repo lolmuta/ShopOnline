@@ -67,5 +67,15 @@ namespace ShopOnline.Api.Extensions
                 TotoalPrice = product.Price * cartItem.Qty,
             };
         }
+        public static IEnumerable<ProductCategoryDto> ConverToDto(
+            this IEnumerable<ProductCategory> productCategories)
+        {
+            return productCategories.Select(x => new ProductCategoryDto()
+            {
+                Id = x.Id,
+                IconCSS = x.IconCSS,
+                Name = x.Name
+            });
+        }
     }
 }
